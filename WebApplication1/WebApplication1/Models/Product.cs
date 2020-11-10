@@ -20,8 +20,11 @@ namespace WebApplication1.Models
         public string Description { get; set; }
         public string Photo { get; set; }
         [Required]
-        public double price { get; set; }
-        public double discount { get; set; }
-        public double rating { get; set; }
+        public double Price { get; set; }
+        public double Discount { get; set; }
+        public double Rating { get; set; }
+
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

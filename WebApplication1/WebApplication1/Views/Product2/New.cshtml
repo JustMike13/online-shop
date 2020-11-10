@@ -7,26 +7,24 @@
 
 
 <form method="post" action="/Product/New">
-    <label>Nume produs</label>
-    <input type="text" name="ProductName" /><br />
+    <label>Id</label>
+    <input type="text" name="ProductId" /><br />
     <label>userId</label>
     <input type="text" name="UserId" /><br />
-
-    <label>Selectati categoria</label>
-    <select name="CategoryId">
-        @foreach (var category in ViewBag.Categories)
-        {
-            <option value="@category.CategoryId">@category.CategoryName</option>
-        }
-    </select>
-    <br />
-
+    <label>category</label>
+    <input type="text" name="CategoryId" /><br />
+    <label>nume produs</label>
+    <input type="text" name="ProductName" /><br />
     <label>description</label>
     <input type="text" name="Description" /><br />
     <label>photo</label>
     <input type="text" name="Photo" /><br />
     <label>pret</label>
     <input type="text" name="Price" /><br />
+    <label>discount</label>
+    <input type="text" name="Discount" /><br />
+    <label>rating</label>
+    <input type="text" name="Rating" /><br />
 
 
     <button type="submit">Adauga produs</button>

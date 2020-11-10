@@ -10,36 +10,47 @@ namespace WebApplication1.Controllers
     public class ProductController : Controller
     {
 
-        private ShopDbContext db = new ShopDbContext();
+        private Models.ShopDbContext db = new Models.ShopDbContext();
         // GET: Product
+        public ActionResult Index()
+        {
+            var products = db.Products.Include("Category");
+            ViewBag.Products = products;
+            return View();
+        }
+
+
         public ActionResult New()
         {
+            var categories = from cat in db.Categories
+                             select cat;
+            ViewBag.Categories = categories;
             return View();
         }
 
         [HttpPost]
         public ActionResult New(Product produs)
         {
-            try
-            {
-                db.Products.Add(produs);
-                db.SaveChanges();
-                TempData["message"] = "produsul a fost adaugat cu succes";
-                return RedirectToAction("New");
-            }
-            catch (Exception e)
-            {
-                return View("New");
-            }
+            db.Products.Add(produs);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Show(int id)
         {
             Product produs = db.Products.Find(id);
-            ViewBag.Produs = produs;
+            ViewBag.Product = produs;
+            ViewBag.Category = produs.Category;
             return View();
         }
-
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            Product product = db.Products.Find(id);
+            db.Products.Remove(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }

@@ -11,9 +11,10 @@ namespace WebApplication1.Models
         public ShopDbContext() : base("DBConnectionString")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopDbContext,
-            Migrations.Configuration>("DBConnectionString"));
+            WebApplication1.Migrations.Configuration>("DBConnectionString"));
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

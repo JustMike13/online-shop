@@ -5,5 +5,22 @@
 
 <h2>Show</h2>
 
-<h1>@ViewBag</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading"><div class="btn btn-info">@ViewBag.Product.ProductName</div>
+        <div class="pull-right btn btn-primary">@ViewBag.Product.Price Lei</div></div>
+        <div class="panel-body">
+            <div>Vandut de: @ViewBag.Product.UserId</div>
+            <div>@ViewBag.Product.Category.CategoryName</div>
+            <div class="btn btn-block">@ViewBag.Product.Description</div>
+            <div class="btn btn-default">Rating: @ViewBag.Product.Rating</div><br />
+            <p>
+                <a class="pull-left btn btn-success" href="/Product/Show/@ViewBag.Product.ProductId">Deschidere</a>
+                <form method="post" action="/Product/Delete/@ViewBag.Product.ProductId">
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <button class="btn btn-danger pull-right" type="submit">Sterge</button>
+                </form>
+            </p>
+        </div>
+
+    </div>
 
